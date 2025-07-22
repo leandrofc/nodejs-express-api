@@ -6,7 +6,7 @@ const router = Router()
 router.get("/players", getPlayer);
 router.post("/players", postPlayer) 
 router.delete("/players/:id", deletePlayer);
-router.patch("players/:id", updatePlayer)
+router.patch("/players/:id", updatePlayer)
 router.get("/players/:id", getPlayerById);
 
 export default router;

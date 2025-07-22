@@ -54,11 +54,14 @@ export const deletePlayerService = async (id: number) => {
 }
 
 export const updatePlayerService = async (id: number, statistics: StatisticsModel) => {
-    let response;
-    
-    // await PlayerRepository.deleteOnePlayer(id);
+    const data = await PlayerRepository.findAndModifyPlayer(id, statistics);
+    let response = null;
 
-    // response = await HttpResponse.ok({ message: "deleted" })
-    
+    if (Object.keys(data).length === 0) {
+        response = await HttpResponse.badRequest();
+    } else {
+        response = await HttpResponse.ok(data);
+    }
+
     return response;
 }
